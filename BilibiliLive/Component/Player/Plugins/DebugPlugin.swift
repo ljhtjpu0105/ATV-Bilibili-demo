@@ -13,7 +13,9 @@ class DebugPlugin: NSObject, CommonPlayerPlugin {
     private weak var containerView: UIView?
     private var debugTimer: Timer?
     private weak var player: AVPlayer?
-    private var debugEnable: Bool { debugTimer?.isValid ?? false }
+    private var debugEnable: Bool {
+        debugTimer?.isValid ?? false
+    }
 
     var customInfo: String = ""
     var additionDebugInfo: (() -> String)?

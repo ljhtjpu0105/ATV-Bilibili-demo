@@ -67,7 +67,9 @@ class StandardVideoCollectionViewController<T: PlayableData>: UIViewController, 
     }
 
     func reallyReloadData() async {
-        if reloading { return }
+        if reloading {
+            return
+        }
         reloading = true
         defer {
             reloading = false

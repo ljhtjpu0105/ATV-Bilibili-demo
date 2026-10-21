@@ -62,7 +62,10 @@ class BiliBiliUpnpDMR: NSObject {
         return randomString
     }()
 
-    override private init() { super.init() }
+    override private init() {
+        super.init()
+    }
+
     func start() {
         startIfNeed()
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -230,7 +233,7 @@ class BiliBiliUpnpDMR: NSObject {
             Logger.debug("no ip")
             return nil
         }
-        let text = """
+        return """
         NOTIFY * HTTP/1.1
         Host: \(ssdpHost):\(ssdpPort)
         Location: http://\(ip):9958/description.xml
@@ -241,7 +244,6 @@ class BiliBiliUpnpDMR: NSObject {
         NT: urn:schemas-upnp-org:device:MediaRenderer:1
 
         """
-        return text
     }
 
     private func ssdpDateString() -> String {

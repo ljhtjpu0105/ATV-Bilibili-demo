@@ -158,7 +158,9 @@ class BLButton: UIControl {
         setup()
     }
 
-    override var canBecomeFocused: Bool { return true }
+    override var canBecomeFocused: Bool {
+        return true
+    }
 
     func setup() {
         isUserInteractionEnabled = true

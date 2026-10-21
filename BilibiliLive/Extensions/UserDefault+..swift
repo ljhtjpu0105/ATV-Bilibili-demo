@@ -85,7 +85,6 @@ extension UserDefaults {
 
     func codable<Element: Codable>(forKey key: String) -> Element? {
         guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
-        let element = try? JSONDecoder().decode(Element.self, from: data)
-        return element
+        return try? JSONDecoder().decode(Element.self, from: data)
     }
 }

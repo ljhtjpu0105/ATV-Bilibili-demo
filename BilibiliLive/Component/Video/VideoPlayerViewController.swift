@@ -35,8 +35,12 @@ struct PlayInfo: Hashable {
     }
 
     var contentIdentity: String {
-        if let epid, epid > 0 { return "epid-\(epid)" }
-        if let seasonId, seasonId > 0 { return "season-\(seasonId)" }
+        if let epid, epid > 0 {
+            return "epid-\(epid)"
+        }
+        if let seasonId, seasonId > 0 {
+            return "season-\(seasonId)"
+        }
         return "aid-\(aid)"
     }
 

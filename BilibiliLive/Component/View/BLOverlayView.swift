@@ -13,7 +13,7 @@ class BLOverlayView: UIView {
 
     var fontSize: CGFloat = 21
 
-    // 1. 渐变层
+    /// 1. 渐变层
     private let gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
         // 透明 -> 黑色(60%透明度)
@@ -22,7 +22,7 @@ class BLOverlayView: UIView {
         return layer
     }()
 
-    // 2. 左侧容器
+    /// 2. 左侧容器
     private let leftStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -31,7 +31,7 @@ class BLOverlayView: UIView {
         return stack
     }()
 
-    // 3. 右侧容器
+    /// 3. 右侧容器
     private let rightStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -40,7 +40,7 @@ class BLOverlayView: UIView {
         return stack
     }()
 
-    // 4. 右上角角标容器
+    /// 4. 右上角角标容器
     private let badgeContainer: UIView = {
         let view = UIView()
         view.backgroundColor = .systemPink
@@ -169,7 +169,7 @@ class BLOverlayView: UIView {
 
     // MARK: - Helper Methods
 
-    // 创建包含图标和Label的小容器
+    /// 创建包含图标和Label的小容器
     private func createInfoItem(icon: String?, text: String) -> UIView {
         let container = UIView()
 

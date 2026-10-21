@@ -59,7 +59,9 @@ class VideoDanmuProvider: DanmuProviderProtocol {
     private var danmuIdx: Int = 0
 
     private let segmentDuration = 60 * 6
-    private func getSegmentIdx(time: TimeInterval) -> Int { Int(time) / segmentDuration + 1 }
+    private func getSegmentIdx(time: TimeInterval) -> Int {
+        Int(time) / segmentDuration + 1
+    }
 
     init(enableDanmuFilter: Bool, enableDanmuRemoveDup: Bool) {
         self.enableDanmuFilter = enableDanmuFilter
@@ -193,7 +195,9 @@ class VideoDanmuProvider: DanmuProviderProtocol {
             let dm = dms[danmuIdx]
             guard dm.time < time else { break }
             danmuIdx += 1
-            if dm.aiLevel < Settings.danmuAILevel { continue }
+            if dm.aiLevel < Settings.danmuAILevel {
+                continue
+            }
             let model = DanmakuTextCellModel(dm: dm)
             onShowDanmu?(model)
             onSendTextModel.send(model)

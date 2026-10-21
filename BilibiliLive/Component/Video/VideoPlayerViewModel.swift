@@ -128,7 +128,9 @@ class VideoPlayerViewModel {
     }
 
     private func fetchVideoDetail(aid: Int, existing: VideoDetail?) async -> VideoDetail? {
-        if let existing { return existing }
+        if let existing {
+            return existing
+        }
         return try? await WebRequest.requestDetailVideo(aid: aid)
     }
 
@@ -400,7 +402,7 @@ class VideoPlayerViewModel {
     }
 }
 
-// 港澳台解锁
+/// 港澳台解锁
 extension VideoPlayerViewModel {
     private func fetchAreaLimitPcgVideoData(for playInfo: PlayInfo) async throws -> VideoPlayURLInfo? {
         guard Settings.areaLimitUnlock else { return nil }
@@ -411,8 +413,7 @@ extension VideoPlayerViewModel {
         let checkAreaList = parseAreaByTitle(title: checkTitle)
         guard !checkAreaList.isEmpty else { return nil }
 
-        let playData = try await requestAreaLimitPcgPlayUrl(epid: epid, cid: playInfo.cid!, areaList: checkAreaList)
-        return playData
+        return try await requestAreaLimitPcgPlayUrl(epid: epid, cid: playInfo.cid!, areaList: checkAreaList)
     }
 
     private func requestAreaLimitPcgPlayUrl(epid: Int, cid: Int, areaList: [String]) async throws -> VideoPlayURLInfo? {

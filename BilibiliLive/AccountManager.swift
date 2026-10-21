@@ -40,7 +40,9 @@ final class AccountManager {
         return storedAccounts.first(where: { $0.profile.mid == activeMID })
     }
 
-    var isLoggedIn: Bool { activeAccount != nil }
+    var isLoggedIn: Bool {
+        activeAccount != nil
+    }
 
     func bootstrap() {
         if activeAccount == nil, let first = storedAccounts.sorted(by: { $0.lastActiveAt > $1.lastActiveAt }).first {

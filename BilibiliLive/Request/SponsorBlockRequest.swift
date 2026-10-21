@@ -51,11 +51,10 @@ enum SponsorBlockRequest {
         do {
             let response = try await request.value
 
-            let segs = response.filter({ $0.videoID == bvid })
+            return response.filter({ $0.videoID == bvid })
                 .map({ $0.segments })
                 .flatMap({ $0 })
                 .filter({ $0.vaild })
-            return segs
         } catch {
             throw error
         }

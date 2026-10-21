@@ -32,8 +32,7 @@ class DanmakuTextCellModel: DanmakuCellModel, Equatable {
     var isPause = false
 
     func calculateSize() {
-        size = NSString(string: text).boundingRect(with: CGSize(width: CGFloat(Float.infinity
-        ), height: 20), options: [.usesFontLeading, .usesLineFragmentOrigin], attributes: [.font: font], context: nil).size
+        size = NSString(string: text).boundingRect(with: CGSize(width: CGFloat(Float.infinity), height: 20), options: [.usesFontLeading, .usesLineFragmentOrigin], attributes: [.font: font], context: nil).size
     }
 
     static func == (lhs: DanmakuTextCellModel, rhs: DanmakuTextCellModel) -> Bool {

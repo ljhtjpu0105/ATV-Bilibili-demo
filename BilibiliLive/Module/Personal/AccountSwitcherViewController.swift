@@ -166,8 +166,7 @@ extension AccountSwitcherViewController: UICollectionViewDataSource {
             cell.configure(with: account, active: account.profile.mid == AccountManager.shared.activeAccount?.profile.mid)
             return cell
         case .actions:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AccountSwitcherAddCell.reuseIdentifier, for: indexPath) as! AccountSwitcherAddCell
-            return cell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: AccountSwitcherAddCell.reuseIdentifier, for: indexPath) as! AccountSwitcherAddCell
         }
     }
 }

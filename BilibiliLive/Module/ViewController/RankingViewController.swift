@@ -106,8 +106,13 @@ class RankingSeasonContentViewController: StandardVideoCollectionViewController<
 }
 
 extension Season: PlayableData {
-    var aid: Int { 0 }
-    var cid: Int { 0 }
+    var aid: Int {
+        0
+    }
+
+    var cid: Int {
+        0
+    }
 }
 
 extension WebRequest.EndPoint {
@@ -138,8 +143,13 @@ struct Season: Codable, DisplayData {
         let index_show: String
     }
 
-    var ownerName: String { new_ep.index_show }
-    var pic: URL? { cover }
+    var ownerName: String {
+        new_ep.index_show
+    }
+
+    var pic: URL? {
+        cover
+    }
 
     let title: String
     let cover: URL

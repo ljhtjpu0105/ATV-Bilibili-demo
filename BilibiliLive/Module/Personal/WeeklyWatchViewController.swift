@@ -23,8 +23,7 @@ class WeeklyWatchViewController: StandardVideoCollectionViewController<VideoDeta
         list = try await WebRequest.requestWeeklyWatchList()
         if let item = list.first {
             collectionVC.headerText = "\(item.name)  \(item.subject)"
-            let data = try await WebRequest.requestWeeklyWatch(wid: item.number)
-            return data
+            return try await WebRequest.requestWeeklyWatch(wid: item.number)
         } else {
             throw NSError(domain: "", code: -1)
         }

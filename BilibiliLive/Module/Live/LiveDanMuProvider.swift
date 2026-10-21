@@ -75,8 +75,7 @@ class LiveDanMuProvider: DanmuProviderProtocol {
 
     private func getHeartbeatPackage() -> Data {
         let data = "[object Object]".data(using: .utf8)!
-        let header = LiveWSHeader.encode(operatorType: .heartBeat, data: data)
-        return header
+        return LiveWSHeader.encode(operatorType: .heartBeat, data: data)
     }
 
     @objc private func sendHeartBeat() {
@@ -227,7 +226,9 @@ private enum OperatorType: UInt32 {
     case auth = 7
     case authReply = 8
 
-    var value: UInt32 { rawValue.bigEndian }
+    var value: UInt32 {
+        rawValue.bigEndian
+    }
 }
 
 private struct AuthPackage: Encodable {
@@ -262,7 +263,6 @@ extension WebRequest {
     }
 
     static func requestDanmuServerInfo(roomID: Int) async throws -> DanmuServerInfo {
-        let resp: DanmuServerInfo = try await request(url: EndPoint.getDanmuInfo, parameters: ["id": roomID])
-        return resp
+        return try await request(url: EndPoint.getDanmuInfo, parameters: ["id": roomID])
     }
 }

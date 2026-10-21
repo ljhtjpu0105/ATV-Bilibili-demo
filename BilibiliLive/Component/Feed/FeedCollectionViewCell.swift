@@ -12,7 +12,13 @@ import UIKit
 
 class FeedCollectionViewCell: BLMotionCollectionViewCell {
     var onLongPress: (() -> Void)?
-    var styleOverride: FeedDisplayStyle? { didSet { if oldValue != styleOverride { updateStyle() } }}
+    var styleOverride: FeedDisplayStyle? {
+        didSet {
+            if oldValue != styleOverride {
+                updateStyle()
+            }
+        }
+    }
 
     private let titleLabel = MarqueeLabel()
     private let upLabel = UILabel()

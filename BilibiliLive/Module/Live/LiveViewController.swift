@@ -92,7 +92,10 @@ struct LiveRoom: DisplayData, Codable {
     let face: URL?
     let cover_from_user: URL?
 
-    var ownerName: String { uname }
+    var ownerName: String {
+        uname
+    }
+
     var pic: URL? {
         if let keyframe {
             return URL(string: keyframe)
@@ -100,7 +103,9 @@ struct LiveRoom: DisplayData, Codable {
         return nil
     }
 
-    var avatar: URL? { face }
+    var avatar: URL? {
+        face
+    }
 
     var overlay: DisplayOverlay? {
         var leftItems = [DisplayOverlay.DisplayOverlayItem]()
@@ -110,8 +115,13 @@ struct LiveRoom: DisplayData, Codable {
 }
 
 extension LiveRoom: PlayableData {
-    var cid: Int { 0 }
-    var aid: Int { 0 }
+    var cid: Int {
+        0
+    }
+
+    var aid: Int {
+        0
+    }
 }
 
 extension WebRequest.EndPoint {
@@ -168,11 +178,25 @@ struct AreaLiveRoom: DisplayData, Codable, PlayableData {
     let parent_name: String
     let area_name: String
     let area_v2_name: String
-    var ownerName: String { uname }
-    var pic: URL? { URL(string: system_cover) }
-    var avatar: URL? { face }
-    var cid: Int { 0 }
-    var aid: Int { 0 }
+    var ownerName: String {
+        uname
+    }
+
+    var pic: URL? {
+        URL(string: system_cover)
+    }
+
+    var avatar: URL? {
+        face
+    }
+
+    var cid: Int {
+        0
+    }
+
+    var aid: Int {
+        0
+    }
 
     var overlay: DisplayOverlay? {
         var leftItems = [DisplayOverlay.DisplayOverlayItem]()

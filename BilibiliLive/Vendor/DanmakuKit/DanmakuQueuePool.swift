@@ -8,15 +8,15 @@
 import Foundation
 
 class DanmakuQueuePool {
-    public let name: String
+    let name: String
 
     private var queues: [DispatchQueue] = []
 
-    public let queueCount: Int
+    let queueCount: Int
 
     private var counter: Int = 0
 
-    public init(name: String, queueCount: Int, qos: DispatchQoS) {
+    init(name: String, queueCount: Int, qos: DispatchQoS) {
         self.name = name
         self.queueCount = queueCount
         for _ in 0..<queueCount {
@@ -25,7 +25,7 @@ class DanmakuQueuePool {
         }
     }
 
-    public var queue: DispatchQueue {
+    var queue: DispatchQueue {
         return getQueue()
     }
 

@@ -41,7 +41,7 @@ extension WebRequest {
         }
     }
 
-    // https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/docs/misc/sign/wbi.md#Swift
+    /// https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/docs/misc/sign/wbi.md#Swift
     private static func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
         // WebId Cache
         class WebIdCache {
@@ -172,8 +172,7 @@ extension WebRequest {
         func calculateMD5(string: String) -> String {
             let messageData = string.data(using: .utf8)!
             let digestData = Insecure.MD5.hash(data: messageData)
-            let digestHex = String(digestData.map { String(format: "%02hhx", $0) }.joined().prefix(32))
-            return digestHex
+            return String(digestData.map { String(format: "%02hhx", $0) }.joined().prefix(32))
         }
 
         getWbiKeys { result in

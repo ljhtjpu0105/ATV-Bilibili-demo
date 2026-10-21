@@ -64,7 +64,6 @@ class BLSettingLineCollectionViewCell: BLMotionCollectionViewCell {
                                                        subitems: [item])
         group.edgeSpacing = .init(leading: nil, top: .fixed(10), trailing: nil, bottom: nil)
         let section = NSCollectionLayoutSection(group: group)
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
+        return UICollectionViewCompositionalLayout(section: section)
     }
 }

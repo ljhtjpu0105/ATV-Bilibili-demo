@@ -110,14 +110,43 @@ protocol FeedFlowDataSource: AnyObject {
 }
 
 extension FeedFlowDataSource {
-    var autoReloadInterval: TimeInterval? { nil }
-    var defaultPreviewHintText: String { "停留后自动预览，按确认键进入视频流" }
-    var loadingHintText: String { "正在加载视频..." }
-    var emptyStateText: String { "当前视频较少，请稍后重试" }
-    var emptyHintText: String { "稍后再试" }
-    var loadFailureText: String { "加载失败，请稍后重试" }
-    var initialTargetCount: Int { 12 }
-    var initialMaxSourcePages: Int { 5 }
-    var trailingPrefetchTargetCount: Int { 8 }
-    var trailingMaxSourcePages: Int { 3 }
+    var autoReloadInterval: TimeInterval? {
+        nil
+    }
+
+    var defaultPreviewHintText: String {
+        "停留后自动预览，按确认键进入视频流"
+    }
+
+    var loadingHintText: String {
+        "正在加载视频..."
+    }
+
+    var emptyStateText: String {
+        "当前视频较少，请稍后重试"
+    }
+
+    var emptyHintText: String {
+        "稍后再试"
+    }
+
+    var loadFailureText: String {
+        "加载失败，请稍后重试"
+    }
+
+    var initialTargetCount: Int {
+        12
+    }
+
+    var initialMaxSourcePages: Int {
+        5
+    }
+
+    var trailingPrefetchTargetCount: Int {
+        8
+    }
+
+    var trailingMaxSourcePages: Int {
+        3
+    }
 }

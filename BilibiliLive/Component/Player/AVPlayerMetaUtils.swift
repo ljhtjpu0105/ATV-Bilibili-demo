@@ -52,7 +52,9 @@ enum AVPlayerMetaUtils {
     }
 
     static func createMetadataItem(for identifier: AVMetadataIdentifier, value: Any?) -> AVMetadataItem? {
-        if value == nil { return nil }
+        if value == nil {
+            return nil
+        }
         let item = AVMutableMetadataItem()
         item.identifier = identifier
         item.value = value as? NSCopying & NSObjectProtocol

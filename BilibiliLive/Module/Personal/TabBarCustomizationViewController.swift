@@ -98,7 +98,9 @@ class TabBarCustomizationViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if editingPage != nil { stopEditing() }
+        if editingPage != nil {
+            stopEditing()
+        }
     }
 
     // MARK: - Press handling

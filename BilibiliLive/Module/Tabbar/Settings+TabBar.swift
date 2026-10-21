@@ -30,17 +30,17 @@ extension Settings {
     @UserDefaultCodable("Settings.tabBarPagePlacements", defaultValue: [])
     static var tabBarPagePlacements: [TabBarPagePlacement]
 
-    // 导航栏
+    /// 导航栏
     static var tabBarPages: [TabBarPage] {
         normalizedPlacements.filter { $0.section == .tabBar }.map(\.page)
     }
 
-    // 个人中心
+    /// 个人中心
     static var personalPages: [TabBarPage] {
         normalizedPlacements.filter { $0.section == .personal }.map(\.page)
     }
 
-    // 初始化
+    /// 初始化
     static func bootstrapTabBarPlacementModelIfNeeded() {
         if tabBarPagePlacements.isEmpty {
             tabBarPagePlacements = defaultPlacements
@@ -76,7 +76,7 @@ extension Settings {
         return normalized
     }
 
-    // 标准化
+    /// 标准化
     private static func normalize(_ placements: [TabBarPagePlacement]) -> [TabBarPagePlacement] {
         var result = [TabBarPagePlacement]()
         var used = Set<TabBarPage>()

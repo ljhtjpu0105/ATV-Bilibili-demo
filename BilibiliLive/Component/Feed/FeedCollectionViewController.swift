@@ -19,9 +19,17 @@ protocol DisplayData: Hashable, AvatarProviding {
 }
 
 extension DisplayData {
-    var avatar: URL? { return nil }
-    var date: String? { return nil }
-    var overlay: DisplayOverlay? { return nil }
+    var avatar: URL? {
+        return nil
+    }
+
+    var date: String? {
+        return nil
+    }
+
+    var overlay: DisplayOverlay? {
+        return nil
+    }
 }
 
 struct AnyDispplayData: Hashable {
@@ -261,8 +269,7 @@ extension FeedCollectionViewController: UICollectionViewDelegate {
     }
 
     func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
-        let indexPath = IndexPath(item: 0, section: 0)
-        return indexPath
+        return IndexPath(item: 0, section: 0)
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

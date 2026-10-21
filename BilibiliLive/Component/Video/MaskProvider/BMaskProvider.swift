@@ -72,7 +72,9 @@ class BMaskProvider: MaskProvider {
         }
 
         for i in 0..<num {
-            if Task.isCancelled { return }
+            if Task.isCancelled {
+                return
+            }
             let seg = segmentsData[i]
             if i < num - 1 {
                 length = segmentsData[i + 1].offset - seg.offset
@@ -130,7 +132,9 @@ class BMaskProvider: MaskProvider {
         let time = time.seconds + 0.1
         guard time != lastTime else { return }
         lastTime = time
-        if time < 0 { return }
+        if time < 0 {
+            return
+        }
         let path = getLatestMaskFrame(byMiliSeconds: UInt32(time * Double(1000)))
         if path != nil {
             shapeLayer.path = path
@@ -147,8 +151,8 @@ class BMaskProvider: MaskProvider {
         maskFramesLock.lock()
         defer { maskFramesLock.unlock() }
         guard !maskFrames.isEmpty else { return nil }
-        // using bisect to find the latest. The methods returns an index to the maskFrames array
-        // where every frame in the array with a smaller index will have a smaller timestamp.
+        /// using bisect to find the latest. The methods returns an index to the maskFrames array
+        /// where every frame in the array with a smaller index will have a smaller timestamp.
         func bisectLeft(_ target: UInt32, _ min: Int = 0, _ max: Int? = nil) -> Int {
             // This implementation is modified from https://gist.github.com/joanromano/adc55ea8a2115e905c19d28fed14bc68
             precondition(min >= 0, "min must be non-negative")
@@ -157,8 +161,11 @@ class BMaskProvider: MaskProvider {
 
             let mid = min + (max - min) / 2
 
-            if maskFrames[mid].time < target { return bisectLeft(target, mid + 1, max) }
-            else { return bisectLeft(target, min, mid) }
+            if maskFrames[mid].time < target {
+                return bisectLeft(target, mid + 1, max)
+            } else {
+                return bisectLeft(target, min, mid)
+            }
         }
         let idx = bisectLeft(time) - 1
         // Checking for stale mask frame. We only want the data if it's within 1 seonds.

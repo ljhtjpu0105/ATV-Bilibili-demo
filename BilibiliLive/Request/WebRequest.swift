@@ -282,23 +282,19 @@ enum WebRequest {
 
 extension WebRequest {
     static func requestBangumiInfo(epid: Int) async throws -> BangumiInfo {
-        let info: BangumiInfo = try await request(url: "https://api.bilibili.com/pgc/view/web/season", parameters: ["ep_id": epid], dataObj: "result")
-        return info
+        return try await request(url: "https://api.bilibili.com/pgc/view/web/season", parameters: ["ep_id": epid], dataObj: "result")
     }
 
     static func requestBangumiInfo(seasonID: Int) async throws -> BangumiInfo {
-        let res: BangumiInfo = try await request(url: "https://api.bilibili.com/pgc/view/web/season", parameters: ["season_id": seasonID], dataObj: "result")
-        return res
+        return try await request(url: "https://api.bilibili.com/pgc/view/web/season", parameters: ["season_id": seasonID], dataObj: "result")
     }
 
     static func requestBangumiSeasonView(epid: Int) async throws -> BangumiSeasonView {
-        let info: BangumiSeasonView = try await request(url: EndPoint.bangumiSeason, parameters: ["ep_id": epid], dataObj: "result")
-        return info
+        return try await request(url: EndPoint.bangumiSeason, parameters: ["ep_id": epid], dataObj: "result")
     }
 
     static func requestBangumiSeasonView(seasonID: Int) async throws -> BangumiSeasonView {
-        let info: BangumiSeasonView = try await request(url: EndPoint.bangumiSeason, parameters: ["season_id": seasonID], dataObj: "result")
-        return info
+        return try await request(url: EndPoint.bangumiSeason, parameters: ["season_id": seasonID], dataObj: "result")
     }
 
     static func requestUserEpisodeInfo(epid: Int) async throws -> UserEpisodeInfo {
@@ -580,8 +576,7 @@ extension WebRequest {
 
     static func requestCid(aid: Int) async throws -> Int {
         let res = try await requestJSON(url: "https://api.bilibili.com/x/player/pagelist?aid=\(aid)&jsonp=jsonp")
-        let cid = res[0]["cid"].intValue
-        return cid
+        return res[0]["cid"].intValue
     }
 
     static func requestDanmuWebView(cid: Int) async throws -> DmWebViewReply {
@@ -643,12 +638,11 @@ extension WebRequest {
 
     static func requestUpSpaceInfo(mid: Int) async throws -> UpSpaceInfo {
         let param: Parameters = ["mid": mid]
-        let resp: UpSpaceInfo = try await request(method: .get, url: "https://api.bilibili.com/x/space/wbi/acc/info", parameters: param)
-        return resp
+        return try await request(method: .get, url: "https://api.bilibili.com/x/space/wbi/acc/info", parameters: param)
     }
 
     struct UpSpaceRelation: Codable, Hashable {
-        // 0：未关注 1：悄悄关注（已弃用）2：已关注 6：已互粉 128：已拉黑
+        /// 0：未关注 1：悄悄关注（已弃用）2：已关注 6：已互粉 128：已拉黑
         let attribute: Int
 
         var is_blocked: Bool {
@@ -689,8 +683,10 @@ extension WebRequest {
     }
 }
 
-extension WebRequest.UpSpaceInfo : AvatarProviding {
-    var avatar: URL? { face }
+extension WebRequest.UpSpaceInfo: AvatarProviding {
+    var avatar: URL? {
+        face
+    }
 }
 
 struct HistoryData: DisplayData, Codable {
@@ -711,7 +707,10 @@ struct HistoryData: DisplayData, Codable {
 
     // displayData
     let title: String
-    var ownerName: String { owner.name }
+    var ownerName: String {
+        owner.name
+    }
+
     var avatar: URL? {
         if owner.face != nil {
             return URL(string: owner.face!)
@@ -743,8 +742,14 @@ struct FavData: PlayableData, Codable {
     var type: Int?
     var title: String
     var ogv: Ogv?
-    var ownerName: String { upper.name }
-    var pic: URL? { URL(string: cover) }
+    var ownerName: String {
+        upper.name
+    }
+
+    var pic: URL? {
+        URL(string: cover)
+    }
+
     let duration: Int
     let cnt_info: CountInfo?
     let pubtime: Int
@@ -770,7 +775,10 @@ struct FavData: PlayableData, Codable {
         return ogv == nil ? DateFormatter.stringFor(timestamp: pubtime) : nil
     }
 
-    var avatar: URL? { URL(string: upper.face ?? "") }
+    var avatar: URL? {
+        URL(string: upper.face ?? "")
+    }
+
     var overlay: DisplayOverlay? {
         var leftItems = [DisplayOverlay.DisplayOverlayItem]()
         var rightItems = [DisplayOverlay.DisplayOverlayItem]()
@@ -855,8 +863,14 @@ struct VideoDetail: Codable, Hashable {
             }
 
             struct UgcVideoInfo: Codable, Hashable, DisplayData {
-                var ownerName: String { "" }
-                var pic: URL? { arc.pic }
+                var ownerName: String {
+                    ""
+                }
+
+                var pic: URL? {
+                    arc.pic
+                }
+
                 let id: Int
                 let aid: Int
                 let cid: Int
@@ -889,9 +903,18 @@ struct VideoDetail: Codable, Hashable {
 }
 
 extension VideoDetail: DisplayData {
-    var title: String { View.title }
-    var ownerName: String { View.owner.name }
-    var pic: URL? { View.pic }
+    var title: String {
+        View.title
+    }
+
+    var ownerName: String {
+        View.owner.name
+    }
+
+    var pic: URL? {
+        View.pic
+    }
+
     var avatar: URL? {
         if View.owner.face != nil {
             return URL(string: View.owner.face!)
@@ -899,11 +922,16 @@ extension VideoDetail: DisplayData {
         return nil
     }
 
-    var date: String? { DateFormatter.stringFor(timestamp: View.pubdate) }
+    var date: String? {
+        DateFormatter.stringFor(timestamp: View.pubdate)
+    }
 }
 
 extension VideoDetail.Info: DisplayData, PlayableData {
-    var ownerName: String { owner.name }
+    var ownerName: String {
+        owner.name
+    }
+
     var avatar: URL? {
         if owner.face != nil {
             return URL(string: owner.face!)
@@ -911,7 +939,9 @@ extension VideoDetail.Info: DisplayData, PlayableData {
         return nil
     }
 
-    var date: String? { DateFormatter.stringFor(timestamp: pubdate) }
+    var date: String? {
+        DateFormatter.stringFor(timestamp: pubdate)
+    }
 
     var overlay: DisplayOverlay? {
         var leftItems = [DisplayOverlay.DisplayOverlayItem]()
@@ -1137,7 +1167,9 @@ struct UpSpaceReq: Codable, Hashable {
                 return author
             }
 
-            var cid: Int { return 0 }
+            var cid: Int {
+                return 0
+            }
         }
     }
 }

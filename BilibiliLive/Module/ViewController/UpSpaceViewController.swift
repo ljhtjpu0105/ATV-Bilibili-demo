@@ -70,7 +70,9 @@ class UpSpaceViewController: StandardVideoCollectionViewController<ApiRequest.Up
     }
 
     override func request(page: Int) async throws -> [ApiRequest.UpSpaceListData] {
-        if page == 1 { lastAid = nil }
+        if page == 1 {
+            lastAid = nil
+        }
 
         async let infoTask = WebRequest.requestUpSpaceInfo(mid: mid)
         async let relationTask = WebRequest.requestUpSpaceRelation(mid: mid)

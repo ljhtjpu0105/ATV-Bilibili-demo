@@ -51,8 +51,7 @@ class CookieHandler {
 
     func getCookie(forURL url: String) -> [HTTPCookie] {
         let computedUrl = URL(string: url)
-        let cookies = cookieStorage.cookies(for: computedUrl!) ?? []
-        return cookies
+        return cookieStorage.cookies(for: computedUrl!) ?? []
     }
 
     func currentStoredCookies() -> [StoredCookie] {

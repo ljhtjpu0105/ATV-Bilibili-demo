@@ -71,8 +71,8 @@ class BilibiliVideoResourceLoaderDelegate: NSObject, AVAssetResourceLoaderDelega
         return "video codecs: \(videoCodec), audio: \(audioCodec)"
     }
 
-    // 黑名单：不支持的编码
-    // 注：经过测试，avc1.640034 (H.264 High 5.2) 在现代设备上是支持的，已移除
+    /// 黑名单：不支持的编码
+    /// 注：经过测试，avc1.640034 (H.264 High 5.2) 在现代设备上是支持的，已移除
     let videoCodecBlackList: [String] = []
 
     private func reset() {
@@ -553,7 +553,7 @@ enum BVideoUrlUtils {
             .map(\.element)
     }
 
-    // PCDN 特征：带端口，或已知的 P2P CDN 域名（部分 PCDN 域名不带端口，仅靠端口判断会漏）
+    /// PCDN 特征：带端口，或已知的 P2P CDN 域名（部分 PCDN 域名不带端口，仅靠端口判断会漏）
     static func isPCDN(_ urlString: String) -> Bool {
         guard let components = URLComponents(string: urlString) else {
             return false
@@ -613,7 +613,7 @@ actor SidxDownloader {
         case ready(SidxResult)
     }
 
-    // sidx 只有几 KB，用短超时的独立 Session，避免默认 60s 超时把起播卡死
+    /// sidx 只有几 KB，用短超时的独立 Session，避免默认 60s 超时把起播卡死
     private static let session: Session = {
         let config = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForRequest = 6

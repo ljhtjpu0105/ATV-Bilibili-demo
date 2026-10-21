@@ -297,7 +297,9 @@ struct DynamicFeedData: Codable, PlayableData, DisplayData {
         return 0
     }
 
-    var cid: Int { 0 }
+    var cid: Int {
+        0
+    }
 
     var title: String {
         modules.module_dynamic.major?.archive?.title ?? modules.module_dynamic.major?.pgc?.title ?? ""

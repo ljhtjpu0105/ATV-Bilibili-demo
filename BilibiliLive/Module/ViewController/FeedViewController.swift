@@ -25,6 +25,11 @@ class FeedViewController: StandardVideoCollectionViewController<ApiRequest.FeedR
 }
 
 extension ApiRequest.FeedResp.Items: PlayableData {
-    var aid: Int { Int(param) ?? 0 }
-    var cid: Int { player_args?.cid ?? 0 }
+    var aid: Int {
+        Int(param) ?? 0
+    }
+
+    var cid: Int {
+        player_args?.cid ?? 0
+    }
 }

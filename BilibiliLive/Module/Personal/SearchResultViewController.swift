@@ -155,10 +155,9 @@ extension SearchResultViewController {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 20
 
-        let layout = UICollectionViewCompositionalLayout(
+        return UICollectionViewCompositionalLayout(
             sectionProvider: sectionProvider, configuration: config
         )
-        return layout
     }
 
     private func configureDataSource() {
@@ -354,10 +353,19 @@ struct SearchResult: Decodable, Hashable {
 
         // DisplayData
         var title: String
-        var ownerName: String { author }
+        var ownerName: String {
+            author
+        }
+
         let pic: URL?
-        var avatar: URL? { URL(string: upic) }
-        var date: String? { DateFormatter.stringFor(timestamp: pubdate) }
+        var avatar: URL? {
+            URL(string: upic)
+        }
+
+        var date: String? {
+            DateFormatter.stringFor(timestamp: pubdate)
+        }
+
         var overlay: DisplayOverlay? {
             var leftItems = [DisplayOverlay.DisplayOverlayItem]()
             var rightItems = [DisplayOverlay.DisplayOverlayItem]()
@@ -378,9 +386,17 @@ struct SearchResult: Decodable, Hashable {
 
         // DisplayData
         var title: String
-        var ownerName: String { styles }
-        var pic: URL? { cover }
-        var date: String? { DateFormatter.stringFor(timestamp: pubtime) }
+        var ownerName: String {
+            styles
+        }
+
+        var pic: URL? {
+            cover
+        }
+
+        var date: String? {
+            DateFormatter.stringFor(timestamp: pubtime)
+        }
     }
 
     struct User: Codable, Hashable {
@@ -475,11 +491,23 @@ struct SearchLiveResult: Decodable, Hashable {
             let cate_name: String
             let titleWithHtml: String
 
-            // DisplayData
-            var title: String { titleWithHtml.removingHTMLTags() }
-            var ownerName: String { uname.removingHTMLTags() }
-            var pic: URL? { cover?.addSchemeIfNeed() }
-            var avatar: URL? { uface?.addSchemeIfNeed() }
+            /// DisplayData
+            var title: String {
+                titleWithHtml.removingHTMLTags()
+            }
+
+            var ownerName: String {
+                uname.removingHTMLTags()
+            }
+
+            var pic: URL? {
+                cover?.addSchemeIfNeed()
+            }
+
+            var avatar: URL? {
+                uface?.addSchemeIfNeed()
+            }
+
             var overlay: DisplayOverlay? {
                 var leftItems = [DisplayOverlay.DisplayOverlayItem]()
                 leftItems.append(DisplayOverlay.DisplayOverlayItem(icon: nil, text: cate_name))
@@ -534,7 +562,7 @@ class SuggestEntry: NSObject, UISearchSuggestion {
     var representedObject: Any?
 
     var title: String
-    var iconImage: UIImage? = nil
+    var iconImage: UIImage?
 
     init(title: String, iconImage: UIImage? = nil) {
         self.title = title

@@ -299,7 +299,10 @@ enum ApiRequest {
                 return nil
             }
 
-            var avatar: URL? { URL(string: avatar_info.cover ?? "") }
+            var avatar: URL? {
+                URL(string: avatar_info.cover ?? "")
+            }
+
             var overlay: DisplayOverlay? {
                 var leftItems = [DisplayOverlay.DisplayOverlayItem]()
                 var rightItems = [DisplayOverlay.DisplayOverlayItem]()
@@ -403,13 +406,11 @@ enum ApiRequest {
     }
 
     static func requestBangumiInfo(epid: Int) async throws -> BangumiInfo {
-        let info: BangumiInfo = try await request(EndPoint.season, parameters: ["ep_id": "\(epid)"])
-        return info
+        return try await request(EndPoint.season, parameters: ["ep_id": "\(epid)"])
     }
 
     static func requestBangumiInfo(seasonID: Int) async throws -> BangumiInfo {
-        let info: BangumiInfo = try await request(EndPoint.season, parameters: ["season_id": "\(seasonID)"])
-        return info
+        return try await request(EndPoint.season, parameters: ["season_id": "\(seasonID)"])
     }
 
     struct UpSpaceListData: Codable, Hashable, DisplayData, PlayableData {
@@ -422,17 +423,28 @@ enum ApiRequest {
         let duration: Int
         let ctime: Int
 
-        // PlayableData
-        var aid: Int { return Int(param) ?? 0 }
-        var cid: Int { return 0 }
+        /// PlayableData
+        var aid: Int {
+            return Int(param) ?? 0
+        }
 
-        // DisplayData
+        var cid: Int {
+            return 0
+        }
+
+        /// DisplayData
         var ownerName: String {
             return author
         }
 
-        var pic: URL? { return cover }
-        var date: String? { DateFormatter.stringFor(timestamp: ctime) }
+        var pic: URL? {
+            return cover
+        }
+
+        var date: String? {
+            DateFormatter.stringFor(timestamp: ctime)
+        }
+
         var overlay: DisplayOverlay? {
             var leftItems = [DisplayOverlay.DisplayOverlayItem]()
             var rightItems = [DisplayOverlay.DisplayOverlayItem]()

@@ -10,11 +10,11 @@ import UIKit
 class Sentinel {
     private var value: Int32 = 0
 
-    public func getValue() -> Int32 {
+    func getValue() -> Int32 {
         return value
     }
 
-    public func increase() {
+    func increase() {
         value += 1
     }
 }
@@ -23,13 +23,13 @@ var pool: DanmakuQueuePool!
 
 class DanmakuAsyncLayer: CALayer {
     /// When true, it is drawn asynchronously and is ture by default.
-    public var displayAsync = true
+    var displayAsync = true
 
-    public var willDisplay: ((_ layer: DanmakuAsyncLayer) -> Void)?
+    var willDisplay: ((_ layer: DanmakuAsyncLayer) -> Void)?
 
-    public var displaying: ((_ context: CGContext, _ size: CGSize, _ isCancelled: () -> Bool) -> Void)?
+    var displaying: ((_ context: CGContext, _ size: CGSize, _ isCancelled: () -> Bool) -> Void)?
 
-    public var didDisplay: ((_ layer: DanmakuAsyncLayer, _ finished: Bool) -> Void)?
+    var didDisplay: ((_ layer: DanmakuAsyncLayer, _ finished: Bool) -> Void)?
 
     private let sentinel = Sentinel()
 

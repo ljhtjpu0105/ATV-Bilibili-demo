@@ -184,7 +184,9 @@ class BVideoPlayPlugin: NSObject, CommonPlayerPlugin {
 
     /// access log 的 indicated 在起播/loading 时常为 0 或负值；日志里的 effective 用流声明平均带宽兜底。
     private func effectiveIndicatedBitrate(from accessLogIndicated: Double) -> Double {
-        if accessLogIndicated > 0 { return accessLogIndicated }
+        if accessLogIndicated > 0 {
+            return accessLogIndicated
+        }
         guard let declared = playerDelegate?.primaryVideoBandwidth, declared > 0 else { return 0 }
         return Double(declared)
     }

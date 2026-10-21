@@ -17,7 +17,7 @@ class BrotliDecompressor {
             bufferPool.returnBuffer(decodedDestinationBuffer)
         }
 
-        let decompressed: Data? = compressed.withUnsafeBytes { encodedSourceBuffer in
+        return compressed.withUnsafeBytes { encodedSourceBuffer in
             let typedPointer = encodedSourceBuffer.bindMemory(to: UInt8.self)
             let decodedCharCount = compression_decode_buffer(
                 decodedDestinationBuffer,
@@ -32,7 +32,6 @@ class BrotliDecompressor {
 
             return Data(bytes: decodedDestinationBuffer, count: decodedCharCount)
         }
-        return decompressed
     }
 }
 

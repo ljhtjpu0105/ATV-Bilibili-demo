@@ -29,7 +29,9 @@ protocol CommonPlayerPlugin: NSObject {
 
 extension CommonPlayerPlugin {
     func addViewToPlayerOverlay(container: UIView) {}
-    func addMenuItems(current: inout [UIMenuElement]) -> [UIMenuElement] { return [] }
+    func addMenuItems(current: inout [UIMenuElement]) -> [UIMenuElement] {
+        return []
+    }
 
     func playerWillStart(player: AVPlayer) {}
     func playerDidStart(player: AVPlayer) {}

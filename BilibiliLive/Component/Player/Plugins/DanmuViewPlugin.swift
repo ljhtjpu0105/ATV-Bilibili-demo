@@ -87,7 +87,9 @@ extension DanmuViewPlugin: CommonPlayerPlugin {
                                                       queue: DispatchQueue.global())
         { [weak self] time in
             guard let self else { return }
-            if !Defaults.shared.showDanmu { return }
+            if !Defaults.shared.showDanmu {
+                return
+            }
             let seconds = time.seconds
             danmuProvider.playerTimeChange(time: seconds)
         }

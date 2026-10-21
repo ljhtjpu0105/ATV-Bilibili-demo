@@ -75,9 +75,15 @@ struct FollowBangumiListData: Codable, Hashable {
             let pub_time: String?
         }
 
-        // DisplayData
-        var ownerName: String { return progress ?? "" }
-        var pic: URL? { return new_ep?.cover ?? cover }
+        /// DisplayData
+        var ownerName: String {
+            return progress ?? ""
+        }
+
+        var pic: URL? {
+            return new_ep?.cover ?? cover
+        }
+
         var overlay: DisplayOverlay? {
             guard let index_show = new_ep?.index_show else { return nil }
             var leftItems = [DisplayOverlay.DisplayOverlayItem]()
@@ -98,6 +104,11 @@ struct FollowBangumiListData: Codable, Hashable {
 }
 
 extension FollowBangumiListData.Bangumi: PlayableData {
-    var aid: Int { 0 }
-    var cid: Int { 0 }
+    var aid: Int {
+        0
+    }
+
+    var cid: Int {
+        0
+    }
 }

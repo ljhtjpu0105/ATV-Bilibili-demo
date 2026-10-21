@@ -5,16 +5,15 @@
 //  Created by yicheng on 2021/4/17.
 //
 
+import Alamofire
 import AVKit
 import Combine
 import Foundation
-import UIKit
-
-import Alamofire
 import Kingfisher
 import MarqueeLabel
 import SnapKit
 import TVUIKit
+import UIKit
 
 private struct PageRange {
     let startIndex: Int
